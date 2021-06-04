@@ -1,3 +1,49 @@
-# yahtzee
+=Yahtzee=
 
-A description of this package.
+'''Author:''' Bryce C
+
+'''Description:''' CLI version the game known as Yahtzee programmed entirely in Swift.
+
+'''License:''' See LICENSE
+
+'''Version:''' 0.1
+
+==Notes==
+
+This has only been tested with Swift 5.x on Ubuntu 20.04, but <strong>should</strong> work on the Mac platform, as well as other Linux platforms that have the latest compiler.
+
+Due to issues with the swift Package Manager, and even the annoyances of the official Swift compiler for Windows, I am not too sure if it will work there.
+
+===Questions===
+
+<ol>
+<li>
+<dl>
+<dt style="font-weight:bold">Why create yet another Yahtzee clone?</dt>
+<dd>
+<p>While I would admit that it is not the most original thing out there, I made this program as an exercise in seeing if I can get enumerations to rely on each other, hence the reason why there are essentially duplicates cases in the two enumerations that matter to scoring, as well as practicing applying conditions to switch statements.</p>
+<p>So far, that has proven fruitful.</p>
+<p>Another reason I had for making this was that it would allow me to get a little more experience programming games, aside from Tic Tac Toe, War, and Rock, Paper, Scissors (which was a project Apple included in their Swift books).</p>
+</dd>
+</dl>
+</li>
+<li>
+<dt style="font-weight:bold">Does this have a high score table, to encourage replay value?</dt>
+<dd>
+<p>No, it does not.</p>
+<p>However, with my current level of knowledge of Swift, that should be fairly manageable. The biggest issue at this moment is where to store it, so that users on computers with multiple accounts can share the same table.</p>
+<p>If I can find an appropriate place, I will likely implement it at a later time.</p>
+</dd>
+</li>
+</ol>
+
+===Installation===
+
+To install this program, download or clone this repo, open a terminal application window pointing to the directory, and run the following command:
+
+<pre>
+swift build
+</pre>
+
+This should get you an executable that you can place in a folder on your PATH.
+
