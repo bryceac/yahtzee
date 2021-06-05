@@ -26,7 +26,7 @@ class Game {
 		    "Yahtzee": 0
 	    ]
 
-        // check the kind of combination was formed and give the appropriate keys proper values.
+        // check the kind of combination was formed and give the appropriate keys proper values, otherwise check the pair type.
 	    if let combination = Combination.combination(of: roll) {
 		    switch combination {
 			    case .fullHouse:
@@ -171,7 +171,7 @@ class Game {
                 guard die.number > 0 else { continue }
                 guard let DIE_INDEX = dice.firstIndex(of: die) else { continue }
 
-                roll += DIE_INDEX == dice.indices.last! ? "\(die.number)\(die.isHeld ? "!" : "")" : "\(die.number)\(die.isHeld ? "!" : "") "
+                roll += DIE_INDEX == dice.indices.last! ? "\(die)" : "\(die) "
             }
 
             // display dice only when each die has a value

@@ -22,3 +22,9 @@ extension Die: Comparable {
         return lhs.number < rhs.number
     }
 }
+
+extension Die: CustomStringConvertible {
+    var description: String {
+        return "\(number)\(isHeld ? "!" : "")"
+    }
+}
