@@ -29,17 +29,8 @@ class Game {
         // check the kind of combination was formed and give the appropriate keys proper values.
 	    if let combination = Combination.combination(of: roll) {
 		    switch combination {
-			    case .yahtzee:
-				    scores["Yahtzee"] = 50
-				    scores["Four of A Kind"] = roll.reduce(0) { $0+$1 }
-				    scores["Three of A Kind"] = roll.reduce(0) { $0+$1 }
-			    case .fourOfAKind:
-				    scores["Four of A Kind"] = roll.reduce(0) { $0+$1 }
-				    scores["Three of A Kind"] = roll.reduce(0) { $0+$1 }
 			    case .fullHouse:
 				    scores["Full House"] = 25
-				    scores["Three of A Kind"] = roll.reduce(0) { $0+$1 }
-			    case .threeOfAKind:
 				    scores["Three of A Kind"] = roll.reduce(0) { $0+$1 }
 			    case .largeStraight:
 				    scores["Large Straight"] = 40
@@ -47,7 +38,19 @@ class Game {
 			    case .smallStraight:
 				    scores["Small Straight"] = 30
 		    }
-	    }
+        } else if let pair = Pair.pair(of: roll) {
+            switch pair {
+            case .fiveOfAKind:
+                    scores["Yahtzee"] = 50
+                    scores["Four of A Kind"] = roll.reduce(0) { $0+$1 }
+                    scores["Three of A Kind"] = roll.reduce(0) { $0+$1 }
+                case .fourOfAKind:
+                    scores["Four of A Kind"] = roll.reduce(0) { $0+$1 }
+                    scores["Three of A Kind"] = roll.reduce(0) { $0+$1 }
+                case .threeOfAKind:
+                    scores["Three of A Kind"] = roll.reduce(0) { $0+$1 }
+            }
+        }
 	
 	    scores["Chance"] = roll.reduce(0) { $0+$1 }
 	
@@ -133,8 +136,8 @@ class Game {
                 }
 
                 // make sure Yahtzee bonuses are properly given
-                if let COMBINATION = Combination.combination(of: roll.map { $0.number }) {
-                    if case Combination.yahtzee = COMBINATION {
+                if let PAIR = Pair.pair(of: roll.map { $0.number }) {
+                    if case Pair.fiveOfAKind = PAIR {
                         if let YAHTZEE_SCORE = self.scoreboard.sheet[1]["Yahtzee"] {
                             self.scoreboard.numberOfYahtzeeBonuses += YAHTZEE_SCORE != 0 ? 1 : 0
                         }
