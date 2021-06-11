@@ -20,6 +20,6 @@ struct Scoreboard {
     var numberOfYahtzeeBonuses = 0
 
     var totalScore: Int {
-        return (gotUpperBonus ? upperTotal + 35 : upperTotal) + (numberOfYahtzeeBonuses*100)
+        return (gotUpperBonus ? upperTotal + 35 : upperTotal) + lowerTotal + (numberOfYahtzeeBonuses*100)
     }
 }
