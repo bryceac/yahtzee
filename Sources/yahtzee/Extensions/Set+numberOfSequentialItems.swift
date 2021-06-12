@@ -2,16 +2,31 @@ import Foundation
 
 extension Set where Element: SignedInteger {
     var numberOfSequentialItems: Int {
-        let collection = self.sorted(by: { $0 > $1 })
+        let COLLECTION = self.sorted(by: { $0 < $1 })
         
-		return collection.reduce(into: 0) { totalConsecutives, number in
-			if number != collection.last! {
-				if let NEXT_NUMBER = collection.element(after: number) {
-					if abs(number-NEXT_NUMBER) == 1 {
-						totalConsecutives += NEXT_NUMBER == collection.last! ? 2 : 1
-					}
-				}			
-			}
-		}
-	}
+        var sequentialCollection: Set<Element> = Set()
+        
+        for number in COLLECTION {
+            if number != COLLECTION.last! {
+                let nextNumber = COLLECTION.element(after: number)!
+                
+                if nextNumber != COLLECTION.last! {
+                    if abs(number - nextNumber) == 1 {
+                        sequentialCollection.insert(number)
+                        sequentialCollection.insert(nextNumber)
+                    }
+
+                    print(sequentialCollection)
+                }
+            } else {
+                let LARGEST_NUMBER = sequentialCollection.max()!
+
+                if number - LARGEST_NUMBER == 1 {
+                    sequentialCollection.insert(number)
+                }
+            }
+        }
+
+        return sequentialCollection.count
+    }
 }
