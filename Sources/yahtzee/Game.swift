@@ -114,6 +114,8 @@ class Game {
 
             choices.append("\(key) for \(score) points")
         }
+        
+        let HAS_ONE_YAHTZEE = LOWER_SECTION.keys.contains("Yahtzee");
 
         let PLAYER_DIALOG = Dialogue(message: "What do you want to score?", choices: choices)
 
@@ -136,10 +138,10 @@ class Game {
                 }
 
                 // make sure Yahtzee bonuses are properly given
-                if let PAIR = Pair.pair(of: roll.map { $0.number }) {
-                    if case Pair.fiveOfAKind = PAIR {
-                        if let YAHTZEE_SCORE = self.scoreboard.sheet[1]["Yahtzee"] {
-                            self.scoreboard.numberOfYahtzeeBonuses += YAHTZEE_SCORE != 0 ? 1 : 0
+                if HAS_ONE_YAHTZEE {
+                    if let PAIR = Pair.pair(of: roll.map { $0.number }) {
+                        if case Pair.fiveOfAKind = PAIR {
+                                self.scoreboard.numberOfYahtzeeBonuses += 1
                         }
                     }
                 }
