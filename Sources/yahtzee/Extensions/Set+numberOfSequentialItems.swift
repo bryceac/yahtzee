@@ -15,13 +15,9 @@ extension Set where Element: SignedInteger {
                         sequentialCollection.insert(number)
                         sequentialCollection.insert(nextNumber)
                     }
-
-                    print(sequentialCollection)
                 }
             } else {
-                let LARGEST_NUMBER = sequentialCollection.max()!
-
-                if number - LARGEST_NUMBER == 1 {
+                if let LARGEST_NUMBER = sequentialCollection.max(), number - LARGEST_NUMBER == 1 {
                     sequentialCollection.insert(number)
                 }
             }
